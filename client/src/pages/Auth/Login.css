@@ -1,0 +1,21 @@
+.login-page {
+  padding: 8% 0 0;
+  margin: auto;
+  /* background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
+  height: 100vh;
+  position: relative;
+}
+
+.signup-form,
+.login-form {
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 11px;
+}
