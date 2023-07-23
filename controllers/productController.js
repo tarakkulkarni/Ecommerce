@@ -203,13 +203,13 @@ const productCountController = async (req, res) => {
 };
 const productListController = async (req, res) => {
   try {
-    const perPage = 6;
+    const perPage = 4;
     const page = req.params.page ? req.params.page : 1;
     const products_list = await Product.find({})
       .select("-photo")
       .skip((page - 1) * perPage)
-      .limit(perPage)
-      .sort({ createdAt: -1 });
+      .limit(perPage);
+
     res.status(200).send({
       success: true,
       products_list,

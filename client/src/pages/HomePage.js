@@ -94,8 +94,12 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    if (page === 1) return;
-    loadMore();
+    if (page === 1) {
+      return;
+    } else {
+      loadMore();
+    }
+    //eslint-disable-next-line
   }, [page]);
 
   const getFilteredProducts = async () => {
@@ -115,7 +119,7 @@ const HomePage = () => {
     <Layout>
       <div className="container-fluid m-3 p-3">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3" style={{ padding: "5rem" }}>
             <h4 className="text-center">Filter By Category</h4>
             <div className="d-flex flex-column">
               {categories?.map((c) => (
@@ -129,7 +133,7 @@ const HomePage = () => {
                 </Checkbox>
               ))}
             </div>
-            <h4 className="text-center">Filter by Price</h4>
+            <h4 className="text-center mt-3">Filter By Price</h4>
             <div className="d-flex flex-column">
               <Radio.Group onChange={(e) => setRadio(e.target.value)}>
                 {Prices.map((price) => (
@@ -139,9 +143,10 @@ const HomePage = () => {
                 ))}
               </Radio.Group>
             </div>
-            <div className="d-flex flex-column">
+            <div>
               <button
-                className="btn btn-danger"
+                className="btn btn-danger mt-3"
+                style={{ width: "75%", textAlign: "center" }}
                 onClick={() => {
                   window.location.reload();
                 }}
@@ -152,46 +157,73 @@ const HomePage = () => {
           </div>
           <div className="col-md-9">
             <h1 className="text-center">All Products</h1>
-            <div className="d-flex">
+            <div className="products-list" style={{ flexWrap: "nowrap" }}>
               {products?.map((p, i) => (
-                <div className="card m-3" style={{ width: "18rem" }} key={i}>
-                  <img
-                    className="card-img-top"
-                    src={`${process.env.REACT_APP_API}/api/v1/products/product-photo/${p._id}`}
-                    alt="Card-cap"
-                    height={300}
-                    width={300}
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">
+                <div
+                  className="card m-3"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "stretch",
+                  }}
+                  key={i}
+                >
+                  <div>
+                    <img
+                      className="card-img-top"
+                      src={`${process.env.REACT_APP_API}/api/v1/products/product-photo/${p._id}`}
+                      alt="Card-cap"
+                    />
+                  </div>
+                  <div className="card-body card-content">
+                    <h4 className="card-title">{p.name}</h4>
+                    <p className="card-text" style={{ fontSize: "1.6rem" }}>
                       {p.description.substring(0, 30)}
                     </p>
-                    <p className="card-text">Rs. {p.price}</p>
-                    <button
-                      className="btn btn-primary ms-1"
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Product added to cart!");
+                    <p
+                      className="card-text"
+                      style={{
+                        fontSize: "1.4rem",
+                        color: "green",
+                        alignSelf: "start",
                       }}
                     >
-                      Add to Cart
-                    </button>
-                    <button
-                      className="btn btn-outline-secondary ms-1"
-                      onClick={() => navigate(`/product/${p.slug}`)}
+                      <strong>Rs. {p.price}</strong>
+                    </p>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.2rem",
+                      }}
                     >
-                      More Details
-                    </button>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          setCart([...cart, p]);
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, p])
+                          );
+                          toast.success("Product added to cart!");
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                      <button
+                        className="btn btn-outline-secondary"
+                        onClick={() => navigate(`/product/${p.slug}`)}
+                      >
+                        More Details-&gt;
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="m-2 p-3 text-center">
+            <div className="text-center">
               {products && products.length < total && (
                 <button
                   className="btn-load"

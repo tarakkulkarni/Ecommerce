@@ -53,7 +53,7 @@ const Login = () => {
               </label>
               <input
                 type="email"
-                className="form-input"
+                className="form-control"
                 id="exampleInputEmail"
                 value={email}
                 onChange={(e) => {
