@@ -1,0 +1,16 @@
+.navbar,
+.navbar-brand {
+  font-size: 1.8rem;
+  padding: 1.4rem;
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.4rem;
+}
+.navbar-nav {
+  gap: 1.8rem;
+}
+.navbar-collapse {
+  justify-content: right;
+}

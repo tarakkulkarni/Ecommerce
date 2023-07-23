@@ -1,21 +1,55 @@
 .login-page {
   padding: 8% 0 0;
-  margin: auto;
+
   /* background-repeat: no-repeat;
   background-size: cover;
   background-position: center; */
-  height: 100vh;
+
   position: relative;
 }
 
 .signup-form,
 .login-form {
-  z-index: 1;
   background: #ffffff;
-  max-width: 360px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 0.8rem;
   text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  border-radius: 11px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 1.1rem;
+}
+.input-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
+}
+.form-label {
+  display: inline;
+  font-size: 2rem;
+}
+
+.form-input {
+  font-family: "Roboto", sans-serif;
+  width: 50%;
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border-radius: 1.2rem;
+  border: 0.8px solid black;
+}
+.form-input:focus {
+  outline: none;
+}
+.form-button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  border: 0;
+  padding: 1.5rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 1.1rem;
 }

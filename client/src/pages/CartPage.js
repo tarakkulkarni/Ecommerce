@@ -29,7 +29,6 @@ const CartPage = () => {
   }, [auth?.token]);
   const handlePayment = async () => {
     try {
-      setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
       const { data } = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/products/braintree/payment`,
@@ -38,13 +37,12 @@ const CartPage = () => {
           cart,
         }
       );
-      setLoading(false);
+
       localStorage.removeItem("cart");
       setCart([]);
       navigate("/dashboard/user/orders");
       toast.success("Payment completed successfully");
     } catch (error) {
-      setLoading(false);
       console.log(error);
     }
   };

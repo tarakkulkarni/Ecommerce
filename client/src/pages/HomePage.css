@@ -1,0 +1,13 @@
+.btn-load {
+  padding: 1rem;
+  border-radius: 0.7rem;
+  color: white;
+  background-color: rgba(241, 175, 10, 0.957);
+  text-decoration: none;
+  border: 1px solid rgba(241, 175, 10, 0.957);
+  font-size: 1.2rem;
+}
+.btn-load:hover {
+  color: rgba(241, 175, 10, 0.957);
+  background-color: white;
+}

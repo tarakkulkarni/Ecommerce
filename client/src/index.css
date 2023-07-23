@@ -3,12 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-.navbar-nav {
-  gap: 20px;
+html {
+  font-size: 62.5%;
 }
-.link-style {
-  text-decoration: none;
-}
+
 .pnf {
   display: flex;
   min-height: 65vh;

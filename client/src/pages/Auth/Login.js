@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import axios from "axios";
-
+import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,20 +42,19 @@ const Login = () => {
     }
   };
   return (
-    <Layout>
-      <div className="login-form">
-        <h1>Login</h1>
-        <div className="login-page">
+    <Layout title={"Login"}>
+      <div className="layout-container">
+        <div>
+          <h1 className="text-center">Login</h1>
           <form onSubmit={handleSubmit} className="login-form">
-            <div className="">
+            <div>
               <label htmlFor="exampleInputEmail" className="form-label">
                 Email
               </label>
               <input
                 type="email"
-                className="form-control"
+                className="form-input"
                 id="exampleInputEmail"
-                style={{ width: "25%" }}
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -63,15 +62,14 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="mb-3 p-2">
+            <div>
               <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
               <input
                 type="password"
-                className="form-control"
+                className="form-input"
                 id="exampleInputPassword1"
-                style={{ width: "25%" }}
                 value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -80,7 +78,7 @@ const Login = () => {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary p-2">
+            <button type="submit" className="btn btn-primary form-button">
               Submit
             </button>
           </form>

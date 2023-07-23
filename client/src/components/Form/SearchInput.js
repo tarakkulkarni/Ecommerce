@@ -3,7 +3,7 @@ import { useSearch } from "../../context/search";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const SearchInput = () => {
-  const [values, setValues] = useSearch();
+  const [values, setValues] = useSearch("");
   const navigate = useNavigate();
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
@@ -19,16 +19,29 @@ const SearchInput = () => {
   };
   return (
     <div>
-      <form className="form-inline my-2 my-lg-0" onSubmit={handleSearchSubmit}>
+      <form
+        style={{
+          display: "flex",
+          gap: "1.4rem",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        onSubmit={handleSearchSubmit}
+      >
         <input
-          className="form-control mr-sm-2"
+          className="form-control "
           type="search"
           placeholder="Search"
           aria-label="Search"
           value={values.keyword}
           onChange={(e) => setValues({ ...values, keyword: e.target.value })}
+          style={{ fontSize: "1.8rem" }}
         />
-        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
+        <button
+          className="btn btn-outline-success "
+          type="submit"
+          style={{ fontSize: "1.6rem" }}
+        >
           Search
         </button>
       </form>

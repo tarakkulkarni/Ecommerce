@@ -6,6 +6,8 @@ import { useCart } from "../context/cart";
 import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import { toast } from "react-toastify";
+import { AiOutlineReload } from "react-icons/ai";
+import "./HomePage.css";
 const HomePage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
@@ -13,6 +15,9 @@ const HomePage = () => {
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
   const [cart, setCart] = useCart();
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const getAllCategories = async () => {
     try {
       const response = await axios.get(
@@ -27,6 +32,7 @@ const HomePage = () => {
   };
   useEffect(() => {
     getAllCategories();
+    getTotal();
   });
 
   const getAllProducts = async () => {
@@ -35,8 +41,20 @@ const HomePage = () => {
         `${process.env.REACT_APP_API}/api/v1/products/get-products`
       );
       if (response.data.success) {
+        setLoading(false);
         setProducts(response.data.products);
       }
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+  const getTotal = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/products/product-count`
+      );
+      setTotal(data?.total);
     } catch (error) {
       console.log(error);
     }
@@ -60,6 +78,26 @@ const HomePage = () => {
       getFilteredProducts();
     }
   });
+
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/products/product-list/${page}`
+      );
+      setLoading(false);
+      setProducts([...products, ...data?.products_list]);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
+
   const getFilteredProducts = async () => {
     try {
       const response = await axios.post(
@@ -152,6 +190,26 @@ const HomePage = () => {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="m-2 p-3 text-center">
+              {products && products.length < total && (
+                <button
+                  className="btn-load"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPage(page + 1);
+                  }}
+                >
+                  {loading ? (
+                    "Loading ..."
+                  ) : (
+                    <>
+                      {" "}
+                      <span>Load More</span> <AiOutlineReload />
+                    </>
+                  )}
+                </button>
+              )}
             </div>
           </div>
         </div>

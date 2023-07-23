@@ -1,0 +1,24 @@
+.footer {
+  position: absolute;
+  background-color: #333;
+  color: white;
+  min-width: 100%;
+  font-size: 1.4rem;
+}
+.footer-links {
+  display: flex;
+  gap: 0.8rem;
+}
+.footer-link {
+  text-decoration: none;
+  color: white;
+}
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 2.4rem;
+}
+.social-icon {
+  height: 2.4rem;
+  width: 2.4rem;
+}
